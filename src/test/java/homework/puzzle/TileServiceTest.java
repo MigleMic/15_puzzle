@@ -1,5 +1,6 @@
 package homework.puzzle;
 
+import homework.puzzle.DTOs.TileDTO;
 import homework.puzzle.Models.Puzzle;
 import homework.puzzle.Services.TileService;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,8 @@ public class TileServiceTest {
                 {13, 5, 11, -1},
                 {12, 10, 4, 14}});
 
-        assertTrue(tileService.moveTileUp(puzzle, 14), "Should be possible to swap");
+        TileDTO tileDTO = new TileDTO("UP", 14);
+        assertTrue(tileService.moveTileUp(puzzle, tileDTO), "Should be possible to swap");
         assertArrayEquals(swappedPuzzle.getPuzzle(), puzzle.getPuzzle(), "Puzzles should match");
     }
 
@@ -40,7 +42,9 @@ public class TileServiceTest {
                 {13, 5, 11, 14},
                 {12, 10, 4, -1}});
 
-        assertFalse(tileService.moveTileUp(puzzle, 1), "Should not be possible to swap");
+        TileDTO tileDTO = new TileDTO("UP", 1);
+
+        assertFalse(tileService.moveTileUp(puzzle, tileDTO), "Should not be possible to swap");
     }
 
     @Test
@@ -57,7 +61,9 @@ public class TileServiceTest {
                 {9, 10, 11, 12},
                 {13, 14, 15, -1}});
 
-        assertTrue(tileService.moveTileDown(puzzle, 12), "Should be possible to swap");
+        TileDTO tileDTO = new TileDTO("DOWN", 12);
+
+        assertTrue(tileService.moveTileDown(puzzle, tileDTO), "Should be possible to swap");
         assertArrayEquals(swappedPuzzle.getPuzzle(), puzzle.getPuzzle(), "Puzzles should match");
     }
 
@@ -69,7 +75,9 @@ public class TileServiceTest {
                 {9, 10, 11, -1},
                 {13, 14, 15, 12}});
 
-        assertFalse(tileService.moveTileDown(puzzle, 7), "Should not be possible to swap");
+        TileDTO tileDTO = new TileDTO("DOWN", 7);
+
+        assertFalse(tileService.moveTileDown(puzzle, tileDTO), "Should not be possible to swap");
     }
 
     @Test
@@ -86,7 +94,9 @@ public class TileServiceTest {
                 {9, -1, 10, 11},
                 {13, 14, 15, 12}});
 
-        assertTrue(tileService.moveTileLeft(puzzle, 10), "Should be possible to swap");
+        TileDTO tileDTO = new TileDTO("LEFT", 10);
+
+        assertTrue(tileService.moveTileLeft(puzzle, tileDTO), "Should be possible to swap");
         assertArrayEquals(swappedPuzzle.getPuzzle(), puzzle.getPuzzle(), "Puzzles should match");
     }
 
@@ -98,7 +108,9 @@ public class TileServiceTest {
                 {9, 10, -1, 11},
                 {13, 14, 15, 12}});
 
-        assertFalse(tileService.moveTileLeft(puzzle, 13), "Should not be possible to swap");
+        TileDTO tileDTO = new TileDTO("LEFT", 13);
+
+        assertFalse(tileService.moveTileLeft(puzzle, tileDTO), "Should not be possible to swap");
     }
 
     @Test
@@ -115,7 +127,9 @@ public class TileServiceTest {
                 {9, 10, 11, -1},
                 {13, 14, 15, 12}});
 
-        assertTrue(tileService.moveTileRight(puzzle, 11), "Should be possible to swap");
+        TileDTO tileDTO = new TileDTO("RIGHT", 11);
+
+        assertTrue(tileService.moveTileRight(puzzle, tileDTO), "Should be possible to swap");
         assertArrayEquals(swappedPuzzle.getPuzzle(), puzzle.getPuzzle(), "Puzzles should match");
     }
 
@@ -127,6 +141,8 @@ public class TileServiceTest {
                 {9, 10, 11, -1},
                 {13, 14, 15, 12}});
 
-        assertFalse(tileService.moveTileRight(puzzle, 3), "Should not be possible to swap");
+        TileDTO tileDTO = new TileDTO("RIGHT", 3);
+
+        assertFalse(tileService.moveTileRight(puzzle, tileDTO), "Should not be possible to swap");
     }
 }

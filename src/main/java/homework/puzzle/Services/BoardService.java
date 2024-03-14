@@ -5,6 +5,7 @@ import homework.puzzle.Models.Puzzle;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BoardService implements IBoardService {
@@ -26,16 +27,12 @@ public class BoardService implements IBoardService {
         Puzzle puzzle = puzzleService.newPuzzle();
         puzzles.put(gameID, puzzle);
 
-        BoardDTO boardDTO = new BoardDTO(gameID, puzzle.getPuzzle());
-
-        return boardDTO;
+        return new BoardDTO(gameID, puzzle.getPuzzle());
     }
 
     @Override
     public List<BoardDTO> getAllBoards() {
-        List<BoardDTO> allBoards = new ArrayList<>();
-
-        for (Map.Entry<Integer, Puzzle> puzzleEntry : puzzles.entrySet()) {
+        return puzzles.entrySet().stream().map(puzzleEntry ->{
             int gameID = puzzleEntry.getKey();
             Puzzle puzzle = puzzleEntry.getValue();
 
@@ -43,10 +40,8 @@ public class BoardService implements IBoardService {
             boardDTO.setGameID(gameID);
             boardDTO.setPuzzle(puzzle.getPuzzle());
 
-            allBoards.add(boardDTO);
-        }
-
-        return allBoards;
+            return boardDTO;
+        }).collect(Collectors.toList());
     }
 
     @Override

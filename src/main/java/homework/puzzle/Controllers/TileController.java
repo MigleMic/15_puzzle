@@ -21,27 +21,26 @@ public class TileController {
         this.boardService = boardService;
     }
 
-    @PostMapping("/moveTile/{gameID}")
+    @PutMapping("/moveTile/{gameID}")
     public ResponseEntity<Puzzle> moveTile(@PathVariable int gameID, @RequestBody TileDTO tileDTO) {
         Puzzle puzzle = boardService.getBoard(gameID);
 
         boolean returnedValue = false;
 
         if (puzzle != null) {
-            int swapTiles = tileDTO.getSwapTile();
 
             switch (tileDTO.getMoveDirection()) {
                 case "UP":
-                    returnedValue = tileService.moveTileUp(puzzle, swapTiles);
+                    returnedValue = tileService.moveTileUp(puzzle, tileDTO);
                     break;
                 case "DOWN":
-                    returnedValue = tileService.moveTileDown(puzzle, swapTiles);
+                    returnedValue = tileService.moveTileDown(puzzle, tileDTO);
                     break;
                 case "RIGHT":
-                    returnedValue = tileService.moveTileRight(puzzle, swapTiles);
+                    returnedValue = tileService.moveTileRight(puzzle, tileDTO);
                     break;
                 case "LEFT":
-                    returnedValue = tileService.moveTileLeft(puzzle, swapTiles);
+                    returnedValue = tileService.moveTileLeft(puzzle, tileDTO);
                     break;
             }
 

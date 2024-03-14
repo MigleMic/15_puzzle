@@ -1,13 +1,14 @@
 package homework.puzzle.Services;
 
+import homework.puzzle.DTOs.TileDTO;
 import homework.puzzle.Models.Puzzle;
 
 public interface ITileService {
-    boolean moveTileUp(Puzzle puzzle, int swapTile);
+    boolean moveTileUp(Puzzle puzzle, TileDTO tileDTO);
 
-    boolean moveTileDown(Puzzle puzzle, int swapTile);
+    boolean moveTileDown(Puzzle puzzle, TileDTO tileDTO);
 
-    boolean moveTileLeft(Puzzle puzzle, int swapTile);
+    boolean moveTileLeft(Puzzle puzzle, TileDTO tileDTO);
 
-    boolean moveTileRight(Puzzle puzzle, int swapTile);
+    boolean moveTileRight(Puzzle puzzle, TileDTO tileDTO);
 }

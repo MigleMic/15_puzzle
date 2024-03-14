@@ -1,5 +1,6 @@
 package homework.puzzle.Services;
 
+import homework.puzzle.DTOs.TileDTO;
 import homework.puzzle.Models.Puzzle;
 import org.springframework.stereotype.Service;
 
@@ -7,23 +8,23 @@ import org.springframework.stereotype.Service;
 public class TileService implements ITileService {
     //When needed, additional logic can be put down in the functions
     @Override
-    public boolean moveTileUp(Puzzle puzzle, int swapTile) {
-        return moveTile(puzzle, "UP", swapTile);
+    public boolean moveTileUp(Puzzle puzzle, TileDTO tileDTO) {
+        return moveTile(puzzle, tileDTO.getMoveDirection(), tileDTO.getSwapTile());
     }
 
     @Override
-    public boolean moveTileDown(Puzzle puzzle, int swapTile) {
-        return moveTile(puzzle, "DOWN", swapTile);
+    public boolean moveTileDown(Puzzle puzzle, TileDTO tileDTO) {
+        return moveTile(puzzle, tileDTO.getMoveDirection(), tileDTO.getSwapTile());
     }
 
     @Override
-    public boolean moveTileLeft(Puzzle puzzle, int swapTile) {
-        return moveTile(puzzle, "LEFT", swapTile);
+    public boolean moveTileLeft(Puzzle puzzle, TileDTO tileDTO) {
+        return moveTile(puzzle, tileDTO.getMoveDirection(), tileDTO.getSwapTile());
     }
 
     @Override
-    public boolean moveTileRight(Puzzle puzzle, int tileToMove) {
-        return moveTile(puzzle, "RIGHT", tileToMove);
+    public boolean moveTileRight(Puzzle puzzle, TileDTO tileDTO) {
+        return moveTile(puzzle, tileDTO.getMoveDirection(), tileDTO.getSwapTile());
     }
 
     private boolean moveTile(Puzzle puzzle, String direction, int swapTile) {
